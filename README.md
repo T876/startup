@@ -14,3 +14,5 @@ We are going to write some `code` to
 `this is another change I made`
 
 `this is a third change`
+
+`this is a merge to test a change conflict`
