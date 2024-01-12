@@ -8,3 +8,5 @@ We are going to write some `code` to
 1. Change The World
 2. Have Some Fun
 3. Learn to Program
+
+`this is a change I made on my local machine`
