@@ -4,19 +4,24 @@
         <title>MyRpgVisual - Login</title>
     </head>
     <body>
-        <div class="header">
+        <header>
             <h3>MyRpgVisual</h3>
-        </div>
-        <div class="body">
-            <form id="login-form">
+            <nav>
+                <menu>
+                    <li><a href="index.html">home</a></li>
+                    <li><a href="html/home.html">my library</a></li>
+                    <li>my library</li>
+                </menu>
+            </nav>
+        </header>
+        <main>
+            <form id="login-form" method="get" action="html/home.html">
                 <h4>Login</h4>
-                <input type="text" id="username" placeholder="Username"> 
+                <input required type="text" id="username" placeholder="Username"> 
                 <br/>
-                <input type="text" id="password" placeholder="Password"> 
+                <input required type="text" id="password" placeholder="Password"> 
                 <br/>
-                <a href="./home.html" style="display:none">
-                    <input type="submit" value="login"> 
-                </a>
+                <input type="submit" value="login"> 
             </form>
             <a href="./html/home.html">
                 <button>
@@ -28,6 +33,9 @@
                     Create account
                 </button>
             </a>
-        </div>
+        </main>
+        <footer>
+
+        </footer>
     </body>
 </html>
