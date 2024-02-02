@@ -39,3 +39,8 @@
 
 # EC2 
 
+# CSS 
+  - EM - the size of an m
+  - body > p - select the children of an element
+  - vw and vh
+  - PBM - Pals Before Marriage - Padding Border Margin 
