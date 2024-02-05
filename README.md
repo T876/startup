@@ -41,3 +41,15 @@ I am planning to use all the required technologies in these ways
 - **DB/Login** - I will store info related to users, their image libraries, and their liked images in the DB. I will also store all of the image URLs for the Gallery here.
 - **WebSocket** - As a user likes an image, that like will update in real-time for all the other users on images that they are viewing
 - **React** - Use the react framework for final application
+
+## HTML deliverable
+
+My application structure has been built using HTML
+
+- **HTML pages** - 5 HTML pages that will be the login and account creation system, image gallery and personal image library pages.
+- **Links** - Links between all the pages containing the functionality for the site are in the header to each page. Link to the 'create account' flow is tied to the 'create account' button in index.html
+- **Text** - Each image and spots to like the images are represented by short descriptions of the names and number of likes. A good example is the gallery.html page.
+- **Images** - Right now I'm using 'img_placeholder.png' (See gallery.html and my-library.html) as a placeholder for all the images in my website. I've got an S3 bucket set up to store and retrieve the images eventually.
+- **DB/Login** - I have a username, password box, and submit button for login (index.html). User data, including a collection of URLs for the images on the my-library.html page are going to be stored on my DB.
+- **3rd party service/API** - I plan to use a 3rd party service for email validation in the 'account confirmation' page.
+- **WebSocket** - The likes on the images on the 'gallery.html' page will use a websocket to update in real-time
