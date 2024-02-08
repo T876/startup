@@ -44,3 +44,4 @@
   - body > p - select the children of an element
   - vw and vh
   - PBM - Pals Before Marriage - Padding Border Margin 
+  - @media selector allows you to set orientation and viewport based styles
