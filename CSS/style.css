@@ -1,28 +1,40 @@
-/* animation demo */
-
-p {
-    animation-name: demo;
-    animation-duration: 3s;
-}
-
-.infinite_animate {
-    animation: demo .1s infinite alternate;
-}
-
-@keyframes demo {
-    from {
-        font-size: 0vh;
-        color:rebeccapurple;
-        opacity: 0%;
-    }
-    to {
-        font-size: 20vh;
-        color:green;
-        opacity: 100%;
-    }
-}
-
 /* Apply to every element */
 :root {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    font-family: Impact, 'Arial Narrow Bold', sans-serif
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    /* Kind of a janky fix, find a way to do this better to deal with the fixed navbar*/
+    margin-top: 60px;
+    height: 100vh;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+footer {
+    display: flex;
+    position: sticky bottom;
+    background-color: black;
+    color: white;
+    width: 100vw;
+    
+
+}
+
+.author_bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 10px;
 }
