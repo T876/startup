@@ -39,14 +39,18 @@
             </nav>
         </header>
         <main>
+            <h4>Sign Up</h4>
             <form id="create-account-form" method="get" action="account-confirmation.html">
-                <h4>Create Account</h4>
-                <input required type="text" id="username" placeholder="Username"> 
-                <br/>
-                <input required type="password" id="password" placeholder="Password"> 
-                <br/>
-                <input type="submit" value="create account"> 
-            </form>
+                <div class="mb-3">
+                  <label for="signupEmail" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="signupEmail" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="signupPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="signupPassword">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
         </main>
         <footer>
             <p>Author: Nathanael T. Cotton</p>

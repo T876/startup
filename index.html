@@ -37,19 +37,23 @@
             </div>
         </nav>
         <main>
-            <form id="login-form" method="get" action="html/my-library.html">
-                <h4>Login</h4>
-                <input required type="text" id="username" placeholder="Username"> 
-                <br/>
-                <input required type="password" id="password" placeholder="Password"> 
-                <br/>
-                <input type="submit" value="login"> 
+            <h1>Welcome to MyRPGVisual!</h1>
+            <h5>Sign In:</h5>
+            <form id="create-account-form" method="get" action="./html/my-library.html">
+                <div class="mb-3">
+                  <label for="signinEmail" class="form-label">Email address</label>
+                  <input required type="email" class="form-control" id="signinEmail" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="signinPassword" class="form-label">Password</label>
+                  <input required type="password" class="form-control" id="signinPassword">
+                </div>
+                <button type="submit" class="btn btn-primary centered">Submit</button>
+                <a href="./html/create-account.html">
+                    <button type="button" class="btn btn-secondary">Create Account</button>
+                </a>
             </form>
-            <a href="./html/create-account.html">
-                <button>
-                    Create account
-                </button>
-            </a>
+            
         </main>
         <footer>
             <div class="author_bio">

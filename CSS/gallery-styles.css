@@ -1,0 +1,23 @@
+.gallery-container{
+    height: 60vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: auto;
+}
+.row {
+    width: 100% !important;
+    gap: 10px;
+}
+.gal-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background-color: lightgray;
+    border-radius: 5px;
+}
