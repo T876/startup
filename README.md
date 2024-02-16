@@ -53,3 +53,11 @@ My application structure has been built using HTML
 - **DB/Login** - I have a username, password box, and submit button for login (index.html). User data, including a collection of URLs for the images on the my-library.html page are going to be stored on my DB.
 - **3rd party service/API** - I plan to use a 3rd party service for email validation in the 'account confirmation' page.
 - **WebSocket** - The likes on the images on the 'gallery.html' page will use a websocket to update in real-time
+
+## CSS Deliverable
+- **Properly styled CSS Header, footer, and main content body** - Styling for these elements is done using bootstrap and in the `CSS/style.css` file.
+- **Properly styled CSS navigation elements** - Nav bar styled with bootstrap
+- **Responsive to window sizing** - All pages dynamically adapt desktop, tablet and mobile sizes
+- **Properly styled CSS application elements** - All elements are styled using bootstrap and supplemental CSS. Main site styles are in `CSS/style.css`, the CSS for the gallery elements in the `gallery.html` and `my-library.html` pages is in `CSS/gallery-style.css` and the styles for the account confirmation page are in `CSS/account-confirmation.css`.
+- **Properly styled CSS application text content** - The bootstrap default font worked great for the design I had in mind.
+- **Properly styled CSS application images** - All images on he `gallery.html` and `my-library.html` pages sized and bordered with css in `gallery-styles.css`
