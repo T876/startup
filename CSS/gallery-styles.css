@@ -31,6 +31,11 @@
     align-items: center;
 }
 
+img {
+    border: 3px solid darkslategray;
+    width: 100px;
+}
+
 @media (min-width:600px) and (max-width:961px)  {
     .gallery-container{
         width: 80vw
