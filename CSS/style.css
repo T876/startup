@@ -35,3 +35,8 @@ footer {
     margin-bottom: 0px;
 }
 
+#error-message{
+    color: red;
+    display: none;
+}
+
