@@ -39,7 +39,7 @@
         <main>
             <h1>Welcome to MyRPGVisual!</h1>
             <h5>Sign In:</h5>
-            <form id="create-account-form" onsubmit="authenticateUser()">
+            <div id="create-account-form">
                 <div class="mb-3">
                   <label for="signinEmail" class="form-label">Email address</label>
                   <input required type="email" class="form-control" id="signinEmail" aria-describedby="emailHelp">
@@ -48,13 +48,13 @@
                   <label for="signinPassword" class="form-label">Password</label>
                   <input required type="password" class="form-control" id="signinPassword">
                 </div>
-                <button type="submit" class="btn btn-primary centered" id="login-button">Submit</button>
+                <button onclick="authenticateUser()" class="btn btn-primary centered" id="login-button">Submit</button>
                 <a href="./html/create-account.html">
                     <button type="button" class="btn btn-secondary">Create Account</button>
                 </a>
-                <div id="error-message">
+                <div id="authError">
                 </div>
-            </form>
+            </div>
             
         </main>
         <footer class="fixed-bottom">

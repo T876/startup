@@ -45,3 +45,25 @@
   - vw and vh
   - PBM - Pals Before Marriage - Padding Border Margin 
   - @media selector allows you to set orientation and viewport based styles
+
+# JS - Promises and Async/Await
+ * General principle - everything is async
+ * What is Async?
+   * Using the Web API to execute intense JS while keeping your main thread free
+   * Promise
+     - Pending - Still working on it
+     - Fulfilled - Completed executing
+     - Rejected - Promise failed
+     - Example `new Promise((resolve, reject  (callback)) => resolve(true))`
+
+    ```
+    function callback(resolve, reject) {
+      resolve('done');
+    }
+    const p = new Promise(callback);
+
+    p.then((resolve_result) => console.log(resolve_result));
+    ```
+    * Async and Await
+     - All need to be async - Essentially wraps everything in a promise
+
