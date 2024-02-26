@@ -2,8 +2,9 @@
 // TODO: Replace this with a function that queries the db with the username and password they entered
 // TODO: Part 2 - May also just include this functionality in the isValidUser() function
 let validUsers = {
-    "john@gmail.com": {
-        password: 'abc123'
+    "JohnDoe": {
+        username: 'john@gmail.com',
+        password: 'abc123',
     }
 };
 
@@ -33,14 +34,8 @@ function authenticateUser() {
     if(isValidUser(username, password)){
         localStorage.setItem('username', username);
         localStorage.setItem('isValidUser', true)
-        window.location.href = "./HTML/my-library.html";
+        window.location.href = "HTML/my-library.html";
     } else {
         throwAuthError('Incorrect Username/Password Combination')
     }
 }
-
-function onInit() {
-    localStorage.setItem('isValidUser', false)
-}
-
-onInit()
