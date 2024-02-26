@@ -1,9 +1,13 @@
+// Get valid users
+// TODO: Replace this with a function that queries the db with the username and password they entered
+// TODO: Part 2 - May also just include this functionality in the isValidUser() function
 let validUsers = {
     "john@gmail.com": {
         password: 'abc123'
     }
 };
 
+// Login Functions
 function throwAuthError(error) {
     let errorMessage = document.getElementById('authError');
     errorMessage.style.display = "";

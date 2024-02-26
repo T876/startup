@@ -34,10 +34,47 @@
  - tracert - Trace the connections to a website
  - dig - Show the DNS information for a domain
  - man - Look up a command in the manual
+ - chmod - Change the type of a file
 
 # Caddy
 
 # EC2 
+
+# REGEX
+ - \w - Any alphanumeric character
+ - \d - any digit
+ - . - wildcard
+ - \. - actually just a dot
+ - [abc] - matches a single a, b, or c character
+ - [^abc] - match any single character other than a, b, or c
+ - [A-C] - match any single character from A to C (all the above with brackets work for numbers too)
+ - {n} - Match n number of repetitions - ex: [a-c]{3} matches 3 repetitions of a character from a to c
+ - {m,n} - Match m to n number of repetitions - ex: z{2,3} matches 2 - 3 z's in a string 
+ - * - zero or more of a given character - example: a* for zero or more of the a character
+ - + - one or more of a given character - example: a+ for one or more of the a character
+ - ? - put this after a character to make it optional
+ - \s - any whitespace character (return, newline, tab, space)
+ - ^ - Line begins with (put before selector)
+ - $ - Line ends with (put after selector)
+ - () - Only capture what is in the parentheses
+ - (()) - Will capture what is inside the second set of parentheses as a separate capture group
+ - (|) - captures what is within the parentheses on either the right or the left of the line thingy
+
+
+# HTML
+ - Div - Division element, NOT divider element
+
+# DNS
+ - A - The record that holds the IP address of a domain
+ - AAAA - The record that contains the IPv6 address for a domain
+ - CNAME - Forwards one domain to another subdomain
+ - SOA - For a server hosting your application
+ - TXT - Lets an admin store text notes in the record
+ - NS - Stores the name server for a DNS entry
+ - SOA - Stores admin information about a domain
+ - SRV record - Specifies a port for specific services
+ - PTR record - Provides a domain name in reverse-lookups
+ - MX record - Directs mail to an email server
 
 # CSS 
   - EM - the size of an m
@@ -45,6 +82,15 @@
   - vw and vh
   - PBM - Pals Before Marriage - Padding Border Margin 
   - @media selector allows you to set orientation and viewport based styles
+
+# JSON
+ - Keys have to be double quote strings
+
+# JS
+ - ++y - Preincrement
+
+# Regex
+ - Study regex syntax, take notes here
 
 # JS - Promises and Async/Await
  * General principle - everything is async
