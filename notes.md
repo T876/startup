@@ -5,8 +5,6 @@
  - Curious
  - Christlike - First and Foremost
 
-# Git
-
 # Command Line Arguments Reference
  - echo - Output the parameters of the command
  - cd - Change directory
@@ -36,11 +34,12 @@
  - man - Look up a command in the manual
  - chmod - Change the type of a file
 
-# Caddy
+# Caddy 
 
 # EC2 
 
 # REGEX
+ - / - Start or end a regular expression
  - \w - Any alphanumeric character
  - \d - any digit
  - . - wildcard
@@ -70,8 +69,8 @@
  - CNAME - Forwards one domain to another subdomain
  - SOA - For a server hosting your application
  - TXT - Lets an admin store text notes in the record
- - NS - Stores the name server for a DNS entry
- - SOA - Stores admin information about a domain
+ - NS - Nameserver - Authority for queries and proof of ownership
+ - SOA - Start of Authority - Stores admin information about a domain
  - SRV record - Specifies a port for specific services
  - PTR record - Provides a domain name in reverse-lookups
  - MX record - Directs mail to an email server
@@ -113,3 +112,12 @@
     * Async and Await
      - All need to be async - Essentially wraps everything in a promise
 
+# How the internet works - Bottom to top:
+ * Link
+  - Hard wired connection
+ * Internet
+  - Chop data into little pieces; IP
+ * Transport
+  - Moving connection information packets - TCP/UDP
+ * Application
+  - Functionality like web browsing - HTTP/HTTPS
