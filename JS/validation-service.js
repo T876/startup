@@ -39,3 +39,7 @@ function authenticateUser() {
         throwAuthError('Incorrect Username/Password Combination')
     }
 }
+
+function createAccount() {
+    // Simulate adding an account to the DB that can be signed into
+}

@@ -16,6 +16,14 @@ function searchImages() {
       }
 }
 
+function randomLikes() {
+    // Simulate likes with the setTimeout method
+}
+
+function uploadPhoto() {
+    // Simulate uploading a photo through the my images page
+}
+
 function onInit() {
     document.getElementById("username-display").innerText = "Welcome, " + localStorage.getItem('username')
 }
