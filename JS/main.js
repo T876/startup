@@ -15,3 +15,9 @@ function searchImages() {
         }
       }
 }
+
+function onInit() {
+    document.getElementById("username-display").innerText = "Welcome, " + localStorage.getItem('username')
+}
+
+onInit()
