@@ -3,10 +3,16 @@
 // TODO: Part 2 - May also just include this functionality in the isValidUser() function
 let validUsers = {
     "JohnDoe": {
-        username: 'john@gmail.com',
-        password: 'abc123',
+        "username": "JohnDoe",
+        "email": "john@gmail.com",
+        "password": "abc123",
     }
 };
+if(!localStorage.getItem("validUsers")){
+    localStorage.setItem("validUsers", JSON.stringify(validUsers))
+}
+
+
 
 // Login Functions
 function throwAuthError(error) {
@@ -16,8 +22,9 @@ function throwAuthError(error) {
 }
 
 function isValidUser(username, password) {
-    if(validUsers[username]){
-        if(validUsers[username].password === password){
+    var users = JSON.parse(localStorage.getItem("validUsers"))
+    if(users[username]){
+        if(users[username]['password'] === password){
             return true
         }
         else {
@@ -40,6 +47,16 @@ function authenticateUser() {
     }
 }
 
-function createAccount() {
-    // Simulate adding an account to the DB that can be signed into
+// Account Creation Functions
+async function createAccount() {
+    // Placeholder for saving user info to the Database
+    validUsers[document.querySelector('#signupUsername').value] = {
+        "username": document.querySelector('#signupUsername').value,
+        "email": document.querySelector('#signupEmail').value,
+        "password": document.querySelector('#signupPassword').value,
+    }
+    localStorage.setItem("validUsers", JSON.stringify(validUsers))
+    console.log('User Saved')
+    window.location.href = "../index.html"
 }
+
