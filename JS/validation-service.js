@@ -50,12 +50,13 @@ function authenticateUser() {
 // Account Creation Functions
 async function createAccount() {
     // Placeholder for saving user info to the Database
-    validUsers[document.querySelector('#signupUsername').value] = {
+    let currentUsers = JSON.parse(localStorage.getItem('validUsers'))
+    currentUsers[document.querySelector('#signupUsername').value] = {
         "username": document.querySelector('#signupUsername').value,
         "email": document.querySelector('#signupEmail').value,
         "password": document.querySelector('#signupPassword').value,
     }
-    localStorage.setItem("validUsers", JSON.stringify(validUsers))
+    localStorage.setItem("validUsers", JSON.stringify(currentUsers))
     console.log('User Saved')
     window.location.href = "../index.html"
 }
