@@ -21,6 +21,7 @@
     background-color: lightgray;
     border-radius: 5px;
     padding-top: 10px;
+    max-width: 34%
 }
 .likes-container{
     padding-top: 10px;
@@ -29,6 +30,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.btn-disabled{
+    border: 1px solid black
+}
+.btn-disabled:hover{
+    border: 1px solid black
 }
 
 img {

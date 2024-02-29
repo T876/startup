@@ -121,3 +121,11 @@
   - Moving connection information packets - TCP/UDP
  * Application
   - Functionality like web browsing - HTTP/HTTPS
+
+# Url Components
+ - Scheme - https://
+ - Domain - byu.edu
+ - Port - :443
+ - Path - /first/second
+ - Params - ?a=foo;b=bar
+ - Anchor - #3
