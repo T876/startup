@@ -21,7 +21,7 @@
     background-color: lightgray;
     border-radius: 5px;
     padding-top: 10px;
-    max-width: 34%
+    min-width: 200px;
 }
 .likes-container{
     padding-top: 10px;
