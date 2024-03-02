@@ -61,3 +61,9 @@ My application structure has been built using HTML
 - **Properly styled CSS application elements** - All elements are styled using bootstrap and supplemental CSS. Main site styles are in `CSS/style.css`, the CSS for the gallery elements in the `gallery.html` and `my-library.html` pages is in `CSS/gallery-style.css` and the styles for the account confirmation page are in `CSS/account-confirmation.css`.
 - **Properly styled CSS application text content** - The bootstrap default font worked great for the design I had in mind.
 - **Properly styled CSS application images** - All images on he `gallery.html` and `my-library.html` pages sized and bordered with css in `gallery-styles.css`
+
+## Javascript Deliverable
+- **Javascript Support For Future Login** - functions for login and account creation are in the `validation-service.js` file and `login-page.js` file.
+- **JS support for future DB data** - User info (collected using the above functions and stored in `localStorage`) will be stored in the db.
+- **JS support for future websocket** - The `randomLikes`function in `user-specific-pages.js` contains a random simulation of likes on pictures coming in from other users.
+- **JS support for application interaction logic** - contained in the `user-specific-pages.js` file and the `my-library.js` file.
