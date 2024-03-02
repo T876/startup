@@ -67,3 +67,4 @@ My application structure has been built using HTML
 - **JS support for future DB data** - User info (collected using the above functions and stored in `localStorage`) will be stored in the db.
 - **JS support for future websocket** - The `randomLikes`function in `user-specific-pages.js` contains a random simulation of likes on pictures coming in from other users.
 - **JS support for application interaction logic** - contained in the `user-specific-pages.js` file and the `my-library.js` file.
+- **Important Note** - You will need to actually create an account to access the main site and all the functionality. Any username, password and email will do. I don't save any of it.
