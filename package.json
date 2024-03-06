@@ -1,0 +1,15 @@
+{
+  "name": "startup",
+  "version": "1.0.0",
+  "description": "---\r Have you ever wanted pictures of cool things like dragons, faries or goblins without having to slog through the turpid mire of the internet? My RPG Visual can help. Brows a family-friendly library of only fantasy applicable images and save the ones you would like to use later. You can see in real time how many people like each image! You can even upload your own images if our library dosen't meet your needs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
