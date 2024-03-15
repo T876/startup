@@ -1,4 +1,4 @@
-import {login, getUserData} from 'authService.js';
+// import {login, getUserData} from 'authService.js';
 
 const express = require('express');
 const app = express();
@@ -12,7 +12,11 @@ app.use((req, res, next) => {
 
 app.use(express.static('public'));
 
-app.get('/login/:username-:password', (req, res) => {
-    let username, password = login(req.params.username, req.params.password);
-    res.send(username, password)
+app.get('/login', (req, res) => {
+    // let username, password = login(req.params.username, req.params.password);
+    if (true) {
+        res.send(true)
+    } else {
+        res.send(false)
+    };
 })

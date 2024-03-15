@@ -35,10 +35,15 @@ function isValidUser(username, password) {
     };
 }
 
-function authenticateUser() {
+async function authenticateUser() {
     let username = document.getElementById('signinEmail').value
     let password = document.getElementById('signinPassword').value
-    if(isValidUser(username, password)){
+    if(await fetch(`/login`).then(
+        (response) => {
+            console.log(response);
+            return response;
+        }
+    )){
         localStorage.setItem('username', username);
         localStorage.setItem('isValidUser', true)
         window.location.href = "HTML/my-library.html";
