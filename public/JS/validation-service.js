@@ -1,19 +1,3 @@
-// Get valid users
-// TODO: Replace this with a function that queries the db with the username and password they entered
-// TODO: Part 2 - May also just include this functionality in the isValidUser() function
-let validUsers = {
-    "JohnDoe": {
-        "username": "JohnDoe",
-        "email": "john@gmail.com",
-        "password": "abc123",
-    }
-};
-if(!localStorage.getItem("validUsers")){
-    localStorage.setItem("validUsers", JSON.stringify(validUsers))
-}
-
-
-
 // Login Functions
 function throwAuthError(error) {
     let errorMessage = document.getElementById('authError');
@@ -21,31 +5,17 @@ function throwAuthError(error) {
     errorMessage.innerText = error;
 }
 
-function isValidUser(username, password) {
-    var users = JSON.parse(localStorage.getItem("validUsers"))
-    if(users[username]){
-        if(users[username]['password'] === password){
-            return true
-        }
-        else {
-            return false;
-        };
-    } else {
-        return false;
-    };
-}
-
 async function authenticateUser() {
     let username = document.getElementById('signinEmail').value
     let password = document.getElementById('signinPassword').value
-    const response = await fetch(`/login/${username}/${password}`);
-    user = await response.json();
-    if(user){
+    try {
+        const response = await fetch(`/login/${username}/${password}`);
+        user = await response.json();
         localStorage.setItem('username', user.username);
         localStorage.setItem('isValidUser', true)
         window.location.href = "HTML/my-library.html";
-    } else {
-        throwAuthError('Incorrect Username/Password Combination')
+    } catch (error) {
+        console.log(error);
     }
 }
 

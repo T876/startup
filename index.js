@@ -19,7 +19,7 @@ app.get('/login/:username/:password', (req, res) => {
             res.send(response);
         }
         else {
-            //TODO: send an error here saying that the username and password are incorrect
+            
         }
     } else {
         // TODO: send an error here saying that we got a bad request
