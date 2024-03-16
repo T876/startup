@@ -23,14 +23,21 @@ async function authenticateUser() {
 // Account Creation Functions
 async function createAccount() {
     // Placeholder for saving user info to the Database
-    let currentUsers = JSON.parse(localStorage.getItem('validUsers'))
-    currentUsers[document.querySelector('#signupUsername').value] = {
-        "username": document.querySelector('#signupUsername').value,
-        "email": document.querySelector('#signupEmail').value,
-        "password": document.querySelector('#signupPassword').value,
+    let email = document.querySelector('#signupEmail').value;
+    let disposable = await validateEmail(email);
+    console.log(disposable)
+    if (!disposable) {
+        console.log('User Saved');
+    } else {
+        console.log('Nice Try')
     }
-    localStorage.setItem("validUsers", JSON.stringify(currentUsers))
-    console.log('User Saved')
-    window.location.href = "../index.html"
+    // window.location.href = "../index.html"
+}
+
+// Make sure the user isn't using a disposable email using a 3rd party API
+async function validateEmail(email) {
+    const response = await fetch(`https://www.disify.com/api/email/${email}`);
+    let isValid = await response.json();
+    return isValid.disposable;
 }
 
