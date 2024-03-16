@@ -38,13 +38,10 @@ function isValidUser(username, password) {
 async function authenticateUser() {
     let username = document.getElementById('signinEmail').value
     let password = document.getElementById('signinPassword').value
-    if(await fetch(`/login`).then(
-        (response) => {
-            console.log(response);
-            return response;
-        }
-    )){
-        localStorage.setItem('username', username);
+    const response = await fetch(`/login/${username}/${password}`);
+    user = await response.json();
+    if(user){
+        localStorage.setItem('username', user.username);
         localStorage.setItem('isValidUser', true)
         window.location.href = "HTML/my-library.html";
     } else {
