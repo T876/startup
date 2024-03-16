@@ -1,21 +1,22 @@
 // Login Functions
-function throwAuthError(error) {
+function authAlert(error) {
     let errorMessage = document.getElementById('authError');
     errorMessage.style.display = "";
+    errorMessage.style.color = "red";
     errorMessage.innerText = error;
 }
 
 async function authenticateUser() {
     let username = document.getElementById('signinEmail').value
     let password = document.getElementById('signinPassword').value
-    try {
-        const response = await fetch(`/login/${username}/${password}`);
-        user = await response.json();
+    const response = await fetch(`/login/${username}/${password}`);
+    user = await response.json();
+    if (user.error) {
+        authAlert(user.error);
+    } else {
         localStorage.setItem('username', user.username);
         localStorage.setItem('isValidUser', true)
         window.location.href = "HTML/my-library.html";
-    } catch (error) {
-        console.log(error);
     }
 }
 

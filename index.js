@@ -19,10 +19,10 @@ app.get('/login/:username/:password', (req, res) => {
             res.send(response);
         }
         else {
-            
+            res.send({error: "Incorrect username and password combination"})
         }
     } else {
-        // TODO: send an error here saying that we got a bad request
+        res.status(500).send({error: "Please send a username and password"})
     };
 });
 
