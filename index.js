@@ -62,6 +62,18 @@ app.get("/pictures/:username", (req, res) => {
     res.send(response);
 })
 
+// Add image to a user's 'My Library' Page
+app.post('/addImage/:username', (req, res) => {
+    const username = req.params.username;
+    const name = req.body.name;
+    const picture = req.body.picture;
+    if (name && picture && username) {
+        res.send(addPicture(username, name, picture));
+    } else {
+        res.status(500).send({error: "Please send a username, name and picture"})
+    };
+});
+
 app.use(express.static('public'));
 
 // DB placeholder for user profiles, these are stored in memory and will be lost when the service is restarted.
@@ -171,4 +183,19 @@ function createUser(username, password, email) {
         
     }
     return true;
+}
+
+function addPicture(username, name, picture) {
+    for (i in users) {
+        let userIndex = parseInt(i);
+        let user = users[userIndex];
+        if (user.username == username) {
+            user.savedImages.push({
+                name: name,
+                picture, picture
+            })
+            return true;
+        }
+    }
+    return false;
 }

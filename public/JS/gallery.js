@@ -1,6 +1,7 @@
 async function initPictures() {
     const response = await fetch('/pictures');
     let allImages = await response.json()
+    // TODO: This is bad practice, make a separate list for images to display so we aren't editing the original response
 
     const response2 = await fetch(`/pictures/${localStorage.getItem('username')}`);
     const userImages = await response2.json();
@@ -29,12 +30,12 @@ async function initPictures() {
         // Create the Div content
         let imgImage = document.createElement('img');
         imgImage.src = image.picture;
-        let imgDiv = document.createElement('div');
-        imgDiv.classlist = 'info-container';
+        let imgTitleDiv = document.createElement('div');
+        imgTitleDiv.classlist = 'info-container';
         let imgSpan = document.createElement('span');
         imgSpan.classList = 'name';
         imgSpan.innerText = image.name;
-        imgDiv.appendChild(imgSpan);
+        imgTitleDiv.appendChild(imgSpan);
 
         // Create the like and add image buttons
         let buttonsContainer = document.createElement('div');
@@ -52,7 +53,7 @@ async function initPictures() {
 
         // Append the content to the div
         newImg.appendChild(imgImage);
-        newImg.appendChild(imgDiv);
+        newImg.appendChild(imgTitleDiv);
         newImg.appendChild(buttonsContainer);
         document.querySelector('.row').append(newImg);
     }
@@ -68,19 +69,29 @@ function likePicture(picture) {
     }
 } 
 
-function addPicture(picture) {
+async function addPicture(picture) {
+    console.log(picture.parentElement.parentElement);
     let pictureUrl = picture.parentElement.parentElement.querySelector('img').src;
-    let pictureName = picture.parentElement.parentElement.querySelector('.info-container .name').innerText;
-    let userPics = JSON.parse(localStorage.getItem('myImages'));
-    userPics.Images[pictureName] = {
+    let pictureName = picture.parentElement.parentElement.querySelector('.name').innerText;
+    let requestBody = {
         "name" : pictureName,
         "picture" : pictureUrl
     };
-    localStorage.setItem('myImages', JSON.stringify(userPics));
-    console.log(JSON.parse(localStorage.getItem('myImages')));
-    picture.classList.remove("btn-secondary");
-    picture.classList.add("btn-disabled");
-    picture.classList.add("liked");
+
+    const response = await fetch(`/addImage/${localStorage.getItem('username')}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(requestBody)
+    });
+    const successful = await response.json();
+
+    if (successful) {
+        picture.classList.remove("btn-secondary");
+        picture.classList.add("btn-disabled");
+        picture.classList.add("liked");
+    };
 }
 
 // Simulate websocket data as other users like pictures
