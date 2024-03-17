@@ -23,15 +23,34 @@ async function authenticateUser() {
 // Account Creation Functions
 async function createAccount() {
     // Placeholder for saving user info to the Database
+    let username = document.querySelector('#signupUsername').value;
     let email = document.querySelector('#signupEmail').value;
+    let password = document.querySelector('#signupPassword').value;
+
+    // Make sure the user isn't using a disposable email
     let disposable = await validateEmail(email);
-    console.log(disposable)
-    if (!disposable) {
-        console.log('User Saved');
-    } else {
-        console.log('Nice Try')
+    if (disposable) {
+        console.log('nice try');
+        return;
     }
-    // window.location.href = "../index.html"
+    
+    const response = await fetch(`/create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password,
+            email: email
+        }),
+    })
+    let userSaved = await response.json;
+    if (userSaved) {
+        window.location.href = "../index.html"
+    } else {
+        authAlert("Unable to save user, please try again")
+    }
 }
 
 // Make sure the user isn't using a disposable email using a 3rd party API
