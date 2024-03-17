@@ -4,8 +4,6 @@ async function populateImages() {
     const response = await fetch(`/pictures/${localStorage.getItem('username')}`);
     const userImages = await response.json();
     console.log(userImages);
-    let gallery = document.querySelector('.row');
-    console.log(Images)
     for (img in userImages)  {
         imageIndex = parseInt(img);
         image = userImages[imageIndex];
