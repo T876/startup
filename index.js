@@ -40,10 +40,16 @@ app.post('/create', (req, res) => {
     };
 });
 
-// Fetch user images
+// Fetch all images
+app.get("/pictures", (req, res) => {
+    res.send(pictures);
+})
+
+
+// Fetch all images for a specific user
 app.get("/pictures/:username", (req, res) => {
     const username = req.params.username;
-    let response = []
+    let response = [];
     for (let user in users) {
         let userIndex = parseInt(user);
         let currentUser = users[userIndex];
@@ -53,7 +59,7 @@ app.get("/pictures/:username", (req, res) => {
             break;
         }
     }
-    res.send(response)
+    res.send(response);
 })
 
 app.use(express.static('public'));
@@ -62,7 +68,8 @@ app.use(express.static('public'));
 let users = [
     {
         username: "johnDoe",
-        password: "john@doe.com",
+        email: "john@doe.com",
+        password: "abc123",
         savedImages: [{
                 name: "Dragon",
                 picture: "../img_placeholder.png"
@@ -91,6 +98,27 @@ let users = [
         ]
     },
 ];
+
+// Placeholder for pictures from image DB
+let pictures = [{
+    name: "Dragon",
+    picture: "../img_placeholder.png"
+}, {
+    name: "Wizard",
+    picture: "../img_placeholder.png"
+}, {
+    name: "Warrior",
+    picture: "../img_placeholder.png"
+}, {
+    name: "Warlock",
+    picture: "../img_placeholder.png"
+}, {
+    name: "Sorcerer",
+    picture: "../img_placeholder.png"
+}, {
+    name: "Goblin",
+    picture: "../img_placeholder.png"
+}, ]
 
 function loginUser(username, password) {
 
@@ -128,7 +156,16 @@ function createUser(username, password, email) {
                 username: username,
                 password: password,
                 email: email,
-                savedImages: []
+                savedImages: [ {
+                    name: "Dragon",
+                    picture: "../img_placeholder.png"
+                }, {
+                    name: "Wizard",
+                    picture: "../img_placeholder.png"
+                }, {
+                    name: "Warrior",
+                    picture: "../img_placeholder.png"
+                }, ]
             }
         );
         
