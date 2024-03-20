@@ -59,4 +59,3 @@ async function validateEmail(email) {
     let isValid = await response.json();
     return isValid.disposable;
 }
-

@@ -42,6 +42,7 @@
  - / - Start or end a regular expression
  - \w - Any alphanumeric character
  - \d - any digit
+ - \b - boundary
  - . - wildcard
  - \. - actually just a dot
  - [abc] - matches a single a, b, or c character

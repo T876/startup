@@ -68,3 +68,10 @@ My application structure has been built using HTML
 - **JS support for future websocket** - The `randomLikes`function in `user-specific-pages.js` contains a random simulation of likes on pictures coming in from other users.
 - **JS support for application interaction logic** - contained in the `user-specific-pages.js` file and the `my-library.js` file.
 - **Important Note** - You will need to actually create an account to access the main site and all the functionality. Any username, password and email will do. I don't save any of it.
+
+## Service Deliverable
+- **Create an HTTP Service using Node.js and Express** - See `main.js`.
+- **Frontend served up using express static middleware** - See `main.js`.
+- **Your frontend calls 3rd party service endpoints** - See `validation-service.js` line 57, `validateEmail` function.
+- **Your backend provides service endpoints** - see `main.js`.
+- **Your frontend calls your service endpoints** - see `my-library.js`, `validation-service.js` and `gallery.js`.

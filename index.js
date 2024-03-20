@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.json())
 
-app.listen(3000);
+app.listen(4000);
 
 app.use((req, res, next) => {
     console.log(req.originalUrl);
