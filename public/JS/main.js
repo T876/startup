@@ -25,8 +25,7 @@ function uploadPhoto() {
 }
 
 function onInit() {
-    document.getElementById("username-display").innerText = "Welcome, " + localStorage.getItem('username')
-    randomLikes()
+    document.getElementById("username-display").innerText = "Welcome, " + localStorage.getItem('username');
 }
 
 onInit()

@@ -1,18 +1,21 @@
-// import {login, getUserData} from 'authService.js';
-
+// Third Party Modules
 const express = require('express');
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
+
+
 const app = express();
 
-app.use(express.json())
+// Using the following middleware:
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.static('public'));
 
 app.listen(4000);
 
-app.use((req, res, next) => {
-    console.log(req.originalUrl);
-    next();
-});
-
 // Authentication endpoints - Login and account creation
+// TODO: Send this in the request body, not using URL Params
+// TODO: Start requesting user records from the Database
 app.get('/login/:username/:password', (req, res) => {
     const username = req.params.username
     const password =  req.params.password
@@ -74,7 +77,7 @@ app.post('/addImage/:username', (req, res) => {
     };
 });
 
-app.use(express.static('public'));
+
 
 // DB placeholder for user profiles, these are stored in memory and will be lost when the service is restarted.
 let users = [

@@ -75,3 +75,6 @@ My application structure has been built using HTML
 - **Your frontend calls 3rd party service endpoints** - See `validation-service.js` line 57, `validateEmail` function.
 - **Your backend provides service endpoints** - see `main.js`.
 - **Your frontend calls your service endpoints** - see `my-library.js`, `validation-service.js` and `gallery.js`.
+
+## Main Type Definitions - 
+ - 
