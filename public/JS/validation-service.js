@@ -11,13 +11,14 @@ async function authenticateUser() {
     let password = document.getElementById('signinPassword').value
     const response = await fetch(`/login/${username}/${password}`);
     user = await response.json();
-    if (user.error) {
-        authAlert(user.error);
-    } else {
+    if (user.isAuthenticated) {
+        // TODO: Replace this with a auth cookie, authenticate using the cookie on all pages that the user shouldn't access w/o logging in
         localStorage.setItem('username', user.username);
         localStorage.setItem('isValidUser', true)
         window.location.href = "HTML/my-library.html";
-    }
+    } else {
+        authAlert("Incorrect username and password");
+    }   
 }
 
 // Account Creation Functions

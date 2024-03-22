@@ -15,22 +15,16 @@ app.use(express.static('public'));
 app.listen(4000);
 
 // Authentication endpoints - Login and account creation
-// TODO: Send this in the request body, not using URL Params
-// TODO: Start requesting user records from the Database
-app.get('/login/:username/:password', (req, res) => {
+app.get('/login/:username/:password', async (req, res) => {
     const username = req.params.username
     const password =  req.params.password
     if (username && password) {
-        let response = loginUser(username, password);
-        if (response) {
-            res.send(response);
-        }
-        else {
-            res.send({error: "Incorrect username and password combination"})
-        }
+        let response = await db.authenticateUser(username, password)
+        // TODO: Send a cookie with an auth token
+        res.send(response)
     } else {
-        res.status(500).send({error: "Please send a username and password"})
-    };
+        res.status(500).send({error: "Please submit a username and password"})
+    }
 });
 
 app.post('/create', async (req, res) => {
@@ -67,7 +61,6 @@ app.get("/pictures/:username", (req, res) => {
     for (let user in users) {
         let userIndex = parseInt(user);
         let currentUser = users[userIndex];
-        console.log(user);
         if (currentUser.username == username) {
             response = currentUser.savedImages;
             break;
