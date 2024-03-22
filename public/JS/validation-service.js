@@ -7,7 +7,7 @@ function authAlert(error) {
 }
 
 async function authenticateUser() {
-    let username = document.getElementById('signinEmail').value
+    let username = document.getElementById('signinUsername').value
     let password = document.getElementById('signinPassword').value
     const response = await fetch(`/login/${username}/${password}`);
     user = await response.json();

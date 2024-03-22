@@ -2,6 +2,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
+const db  = require('./database.js');
 
 
 const app = express();
@@ -37,7 +38,7 @@ app.post('/create', (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
     if (username && password && email) {
-        res.send(createUser(username, password, email));
+        res.send(db.createUser({}));
     } else {
         res.status(500).send({error: "Please send a username, password, and email"})
     };
