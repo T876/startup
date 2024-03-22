@@ -31,6 +31,10 @@ async function getUserByEmail(email) {
     return users.find({ email: email });
 }
 
+async function getUserByUsername(username) {
+    return users.find({ username: username });
+}
+
 async function getUserByAuthToken(token) {
 
 }
@@ -49,6 +53,7 @@ module.exports = {
     createUser,
     authenticateUser,
     getUserByEmail,
+    getUserByUsername,
     getUserByAuthToken,
     getImages,
     addUserImage,
