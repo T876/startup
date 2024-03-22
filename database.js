@@ -27,12 +27,12 @@ async function authenticateUser(username, password) {
 
 }
 
-async function getUserByEmail(email) {
-    return users.find({ email: email });
+function getUserByEmail(email) {
+    return users.findOne({ email: email });
 }
 
-async function getUserByUsername(username) {
-    return users.find({ username: username });
+function getUserByUsername(username) {
+    return users.findOne({ username: username });
 }
 
 async function getUserByAuthToken(token) {

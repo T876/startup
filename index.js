@@ -39,8 +39,8 @@ app.post('/create', async (req, res) => {
     const email = req.body.email;
     if (await db.getUserByEmail(email)) {
         res.status(409).send({error: "Existing user. Please use another email."})
-    } else if (await db.getUserByUsername()) {
-        res.status(409).send({error: "Existing user. Please use another username"})
+    } else if (await db.getUserByUsername(username)) {
+        res.status(409).send({error: "Existing user. Please use another username."})
     } else {
         if (username && password && email) {
             res.send(await db.createUser({
