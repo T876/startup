@@ -11,12 +11,15 @@ const images = db.collection('images');
 
 // Authentication Functions
 async function createUser(user) {
+    const passwordHash = await bcrypt.hash(user.password, 10)
+
     await users.insertOne({
         username: user.username,
         email: user.email,
-        password: "abc123",
+        password: passwordHash,
         savedImages: [],
     })
+
     return true;
 }
 
@@ -25,7 +28,7 @@ async function authenticateUser(username, password) {
 }
 
 async function getUserByEmail(email) {
-
+    return users.find({ email: email });
 }
 
 async function getUserByAuthToken(token) {

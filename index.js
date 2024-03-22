@@ -33,15 +33,23 @@ app.get('/login/:username/:password', (req, res) => {
     };
 });
 
-app.post('/create', (req, res) => {
+app.post('/create', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
-    if (username && password && email) {
-        res.send(db.createUser({}));
+    if (await db.getUserByEmail(email)) {
+        res.status(409).send({error: "Existing user. Please use another email."})
     } else {
-        res.status(500).send({error: "Please send a username, password, and email"})
-    };
+        if (username && password && email) {
+            res.send(await db.createUser({
+                username: username,
+                email: email,
+                password: password
+            }));
+        } else {
+            res.status(409).send({error: "Please send a username, password, and email"})
+        };
+    }
 });
 
 // Fetch all images

@@ -45,11 +45,12 @@ async function createAccount() {
             email: email
         }),
     })
-    let userSaved = await response.json;
-    if (userSaved) {
+    
+    if (response.ok) {
         window.location.href = "../index.html"
     } else {
-        authAlert("Unable to save user, please try again")
+        const body = await response.json();
+        authAlert(body.error);
     }
 }
 
