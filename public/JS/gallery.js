@@ -1,3 +1,13 @@
+let currentUser = {}
+async function getCurrentUser() {
+    let response = await fetch('/secure/currentUser')
+    if (!response.ok){
+        window.location.href = '/index.html'
+    
+    }
+    currentUser = await response.json()
+}
+
 async function initPictures() {
     const response = await fetch('/pictures');
     let allImages = await response.json()
@@ -108,5 +118,10 @@ function randomLikes() {
     }
 }
 
-initPictures()
-randomLikes()
+async function onInit() {
+    await getCurrentUser()
+    initPictures()
+    randomLikes()
+}
+
+onInit();

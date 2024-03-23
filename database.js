@@ -48,7 +48,7 @@ function getUserByUsername(username) {
 }
 
 async function getUserByAuthToken(token) {
-
+    return users.findOne({ token: token });
 }
 
 // Image Functions

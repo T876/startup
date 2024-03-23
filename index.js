@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const db  = require('./database.js');
 const { UUID } = require('mongodb');
 
-const authCookieName = 'authCookie'
+const authCookieName = 'authCookie';
 const app = express();
 
 // Using the following middleware:
@@ -60,7 +60,7 @@ app.use('/secure', securePages)
 
 securePages.use(async (req, res, next) => {
     authToken = req.cookies[authCookieName];
-    const user = await db.getUserByToken(authToken);
+    const user = await db.getUserByAuthToken(authToken);
     if (user) {
         next();
     } else {
@@ -68,14 +68,8 @@ securePages.use(async (req, res, next) => {
     }
 })
 
-securePages.get('/currentUser', async (req, res, next) => {
-    let currUser = await db.getUserByAuthToken(req.cookies[authCookieName])
-    if (currUser){
-        res.send(currUser);
-    } else {
-        res.status(401).send('No authentication token found')
-    }
-    
+securePages.get('/currentUser', async (req, res) => {
+    res.send(await db.getUserByAuthToken(req.cookies[authCookieName]));
 })
 
 // Fetch all images

@@ -1,5 +1,16 @@
 // TODO - Get the logged in user
 
+let currentUser = {}
+async function getCurrentUser() {
+    let response = await fetch('/secure/currentUser')
+    if (!response.ok){
+        window.location.href = '/index.html'
+    
+    }
+    currentUser = await response.json()
+}
+
+
 let Images = JSON.parse(localStorage.getItem('myImages')); // TODO: get the images from the logged in user
 
 async function populateImages() {
@@ -30,15 +41,11 @@ async function populateImages() {
     }
 }
 
-function onInit() {
+async function onInit() {
     populateImages();
+    await getCurrentUser();
+    console.log(currentUser);
 
-    if(localStorage.getItem('isValidUser') === 'true') {
-        console.log('User Authorized to Access this page')
-    } else {
-        window.location.href = "../index.html"
-    }
-    
 }
 
 onInit();
