@@ -28,9 +28,14 @@ async function createUser(user) {
 async function authenticateUser(username, password) {
     let user = await getUserByUsername(username);
     if (await bcrypt.compare(password, user.password)) {
-        return { isAuthenticated: true };
+        return { 
+            isAuthenticated: true,
+            token: user.token
+        };
     } else {
-        return { isAuthenticated: false };
+        return { 
+            isAuthenticated: false,
+        };
     }
 }
 

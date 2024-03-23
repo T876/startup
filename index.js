@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const db  = require('./database.js');
 const { UUID } = require('mongodb');
 
-
+const authCookieName = 'authCookie'
 const app = express();
 
 // Using the following middleware:
@@ -21,12 +21,16 @@ app.get('/login/:username/:password', async (req, res) => {
     const password =  req.params.password
     if (username && password) {
         let response = await db.authenticateUser(username, password)
-        setAuthCookie(res, user.token);
-        // TODO: Send a cookie with an auth token
-        res.send(response)
+        setAuthCookie(res, response.token);
+        res.send(response);
     } else {
-        res.status(500).send({error: "Please submit a username and password"})
+        res.status(500).send({error: "Please submit a username and password"});
     }
+});
+
+app.get('/logout', async (req, res)=> {
+    res.clearCookie(authCookieName);
+    res.status(204);
 });
 
 app.post('/create', async (req, res) => {
@@ -62,6 +66,16 @@ securePages.use(async (req, res, next) => {
     } else {
         res.status(401).send({ msg: 'Unauthorized' });
     }
+})
+
+securePages.get('/currentUser', async (req, res, next) => {
+    let currUser = await db.getUserByAuthToken(req.cookies[authCookieName])
+    if (currUser){
+        res.send(currUser);
+    } else {
+        res.status(401).send('No authentication token found')
+    }
+    
 })
 
 // Fetch all images
@@ -154,58 +168,14 @@ let pictures = [{
     picture: "../img_placeholder.png"
 }, ]
 
-function loginUser(username, password) {
+function setAuthCookie(res, authToken) {
+    res.cookie(authCookieName, authToken, {
+      secure: true,
+      httpOnly: true,
+      sameSite: 'strict',
+    });
+  }
 
-    let userExists = false;
-    let returnUser = {};
-
-    for (let user in users) {
-        userIndex = parseInt(user)
-        if (users[userIndex].username == username && users[userIndex].password == password) {
-            userExists = true;
-            returnUser = users[userIndex];
-        }
-    };
-
-    if (!userExists) {
-        return false;
-    } else {
-        return returnUser;
-    };
-}
-
-function createUser(username, password, email) {
-    // Check to see if the user already exists
-    let userExists = false;
-    for (let user in users) {
-        userIndex = parseInt(user)
-        if (users[userIndex].username == username && users[userIndex].password == password) {
-            userExists = true;
-        }
-    };
-
-    if (!userExists) {
-        users.push(
-            {
-                username: username,
-                password: password,
-                email: email,
-                savedImages: [ {
-                    name: "Dragon",
-                    picture: "../img_placeholder.png"
-                }, {
-                    name: "Wizard",
-                    picture: "../img_placeholder.png"
-                }, {
-                    name: "Warrior",
-                    picture: "../img_placeholder.png"
-                }, ]
-            }
-        );
-        
-    }
-    return true;
-}
 
 function addPicture(username, name, picture) {
     for (i in users) {

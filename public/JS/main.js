@@ -18,14 +18,12 @@ function searchImages() {
       }
 }
 
-
-
 function uploadPhoto() {
     // Simulate uploading a photo through the my images page
 }
 
 function onInit() {
-    document.getElementById("username-display").innerText = "Welcome, " + localStorage.getItem('username');
+    document.getElementById("username-display").innerText = "Welcome, ";
 }
 
 onInit()
