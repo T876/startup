@@ -17,6 +17,7 @@ async function createUser(user) {
         username: user.username,
         email: user.email,
         password: passwordHash,
+        token: uuid.v4(),
         savedImages: [],
     })
 

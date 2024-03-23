@@ -3,6 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const db  = require('./database.js');
+const { UUID } = require('mongodb');
 
 
 const app = express();
@@ -20,6 +21,7 @@ app.get('/login/:username/:password', async (req, res) => {
     const password =  req.params.password
     if (username && password) {
         let response = await db.authenticateUser(username, password)
+        setAuthCookie(res, user.token);
         // TODO: Send a cookie with an auth token
         res.send(response)
     } else {
@@ -48,14 +50,27 @@ app.post('/create', async (req, res) => {
     }
 });
 
+// securePages verifies user is logged in before they hit any further endpoints
+let securePages = express.Router()
+app.use('/secure', securePages)
+
+securePages.use(async (req, res, next) => {
+    authToken = req.cookies[authCookieName];
+    const user = await db.getUserByToken(authToken);
+    if (user) {
+        next();
+    } else {
+        res.status(401).send({ msg: 'Unauthorized' });
+    }
+})
+
 // Fetch all images
-app.get("/pictures", (req, res) => {
+securePages.get("/pictures", (req, res) => {
     res.send(pictures);
 })
 
-
-// Fetch all images for a specific user
-app.get("/pictures/:username", (req, res) => {
+// TODO: Fetch all images for user from DB
+securePages.get("/pictures/:username", (req, res) => {
     const username = req.params.username;
     let response = [];
     for (let user in users) {
@@ -69,8 +84,8 @@ app.get("/pictures/:username", (req, res) => {
     res.send(response);
 })
 
-// Add image to a user's 'My Library' Page
-app.post('/addImage/:username', (req, res) => {
+// TODO: Add this to the user's user record
+securePages.post('/addImage/:username', (req, res) => {
     const username = req.params.username;
     const name = req.body.name;
     const picture = req.body.picture;
