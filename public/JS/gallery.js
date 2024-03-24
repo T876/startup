@@ -13,9 +13,7 @@ async function initPictures() {
     let allImages = await response.json()
     // TODO: This is bad practice, make a separate list for images to display so we aren't editing the original response
 
-    // const response2 = await fetch(`/pictures/${localStorage.getItem('username')}`);
-    // const userImages = await response2.json();
-    let userImages = [];
+    const userImages = currentUser.savedImages;
 
     // If a picture has already been added to a user's library, don't show it here
     for (img in userImages) {
@@ -68,6 +66,7 @@ async function initPictures() {
         newImg.appendChild(buttonsContainer);
         document.querySelector('.row').append(newImg);
     }
+    
 }
 
 function likePicture(picture) {
@@ -89,20 +88,18 @@ async function addPicture(picture) {
         "picture" : pictureUrl
     };
 
-    const response = await fetch(`/addImage/${localStorage.getItem('username')}`, {
+    const response = await fetch(`/secure/addImage/${currentUser.username}`, {
         method: 'POST',
         headers: {
             'Content-Type':'application/json'
         },
         body: JSON.stringify(requestBody)
     });
-    const successful = await response.json();
 
-    if (successful) {
-        picture.classList.remove("btn-secondary");
-        picture.classList.add("btn-disabled");
-        picture.classList.add("liked");
-    };
+    picture.classList.remove("btn-secondary");
+    picture.classList.add("btn-disabled");
+    picture.classList.add("liked");
+    location.reload();
 }
 
 // Simulate websocket data as other users like pictures

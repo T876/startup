@@ -59,8 +59,15 @@ async function getImages() {
     return await images.find().toArray();
 }
 
-async function addUserImage() {
+// Takes a list of images and a username. Sets the users images to that list of images
+async function addUserImage(images, username) {
 
+    let isSaved = await users.updateOne(
+        { username: username },
+        { $set: { savedImages: images } }
+    );
+    console.log(isSaved)
+    return 
 }
 
 

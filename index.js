@@ -64,6 +64,7 @@ securePages.use(async (req, res, next) => {
     authToken = req.cookies[authCookieName];
     const user = await db.getUserByAuthToken(authToken);
     if (user) {
+        res.locals.user = user;
         next();
     } else {
         res.status(401).send({ msg: 'Unauthorized' });
@@ -97,11 +98,18 @@ securePages.get("/pictures/:username", (req, res) => {
 
 // TODO: Add this to the user's user record
 securePages.post('/addImage/:username', (req, res) => {
+    const user = res.locals.user;
     const username = req.params.username;
     const name = req.body.name;
     const picture = req.body.picture;
     if (name && picture && username) {
-        res.send(addPicture(username, name, picture));
+        let images = user.savedImages;
+        images.push({
+            name: name,
+            picture: picture,
+        });
+        db.addUserImage(images, username);
+        res.status(200).send();
     } else {
         res.status(500).send({error: "Please send a username, name and picture"})
     };
