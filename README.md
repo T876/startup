@@ -76,5 +76,12 @@ My application structure has been built using HTML
 - **Your backend provides service endpoints** - see `main.js`.
 - **Your frontend calls your service endpoints** - see `my-library.js`, `validation-service.js` and `gallery.js`.
 
+## Login Deliverable
+- **Supports new user registration** - see `index.js` lines 36-55, `database.js`lines 13-25
+- **Supports existing user authentication** - see `index.js` lines 19-29, 58-74, `database.js` lines 30-54
+- **Stores application data in MongoDB** - see `database.js`, lines 57-72
+- **Stores and retrieves credentials in MongoDB** - see `index.js` lines 36-55, `database.js`lines 13-25
+- **Restricts application functionality based upon authentication** see `index.js` lines 58-74
+
 ## Main Type Definitions - 
  - 

@@ -53,6 +53,7 @@ async function getUserByAuthToken(token) {
     return users.findOne({ token: token });
 }
 
+
 // Image Functions
 async function getImages() {
     console.log(await images.find().toArray());

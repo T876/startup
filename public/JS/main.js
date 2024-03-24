@@ -18,8 +18,11 @@ function searchImages() {
       }
 }
 
-function uploadPhoto() {
-    // Simulate uploading a photo through the my images page
+async function logout() {
+    await fetch('/secure/logout', {
+        method: 'delete',
+    }).then(() => (window.location.href = '/'))
+    window.location.href = '/index.html'
 }
 
 function onInit() {

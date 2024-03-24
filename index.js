@@ -28,11 +28,6 @@ app.get('/login/:username/:password', async (req, res) => {
     }
 });
 
-app.get('/logout', async (req, res)=> {
-    res.clearCookie(authCookieName);
-    res.status(204);
-});
-
 
 
 app.post('/create', async (req, res) => {
@@ -60,6 +55,11 @@ app.post('/create', async (req, res) => {
 let securePages = express.Router()
 app.use('/secure', securePages)
 
+securePages.delete('/logout', async (_req, res)=> {
+    res.clearCookie(authCookieName);
+    res.status(204).end();
+});
+
 securePages.use(async (req, res, next) => {
     authToken = req.cookies[authCookieName];
     const user = await db.getUserByAuthToken(authToken);
@@ -81,7 +81,6 @@ securePages.get("/pictures", async (req, res) => {
     res.send(response);
 })
 
-// TODO: Fetch all images for user from DB
 securePages.get("/pictures/:username", (req, res) => {
     const username = req.params.username;
     let response = [];
@@ -96,7 +95,6 @@ securePages.get("/pictures/:username", (req, res) => {
     res.send(response);
 })
 
-// TODO: Add this to the user's user record
 securePages.post('/addImage/:username', (req, res) => {
     const user = res.locals.user;
     const username = req.params.username;
@@ -127,21 +125,6 @@ function setAuthCookie(res, authToken) {
     });
   }
 
-
-function addPicture(username, name, picture) {
-    for (i in users) {
-        let userIndex = parseInt(i);
-        let user = users[userIndex];
-        if (user.username == username) {
-            user.savedImages.push({
-                name: name,
-                picture, picture
-            })
-            return true;
-        }
-    }
-    return false;
-}
 
 // In the future when I build admin functions
 // app.get('/initpictures', async (req, res) => {
