@@ -9,12 +9,13 @@ async function getCurrentUser() {
 }
 
 async function initPictures() {
-    const response = await fetch('/pictures');
+    const response = await fetch('/secure/pictures');
     let allImages = await response.json()
     // TODO: This is bad practice, make a separate list for images to display so we aren't editing the original response
 
-    const response2 = await fetch(`/pictures/${localStorage.getItem('username')}`);
-    const userImages = await response2.json();
+    // const response2 = await fetch(`/pictures/${localStorage.getItem('username')}`);
+    // const userImages = await response2.json();
+    let userImages = [];
 
     // If a picture has already been added to a user's library, don't show it here
     for (img in userImages) {

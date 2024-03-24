@@ -33,6 +33,8 @@ app.get('/logout', async (req, res)=> {
     res.status(204);
 });
 
+
+
 app.post('/create', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -73,8 +75,9 @@ securePages.get('/currentUser', async (req, res) => {
 })
 
 // Fetch all images
-securePages.get("/pictures", (req, res) => {
-    res.send(pictures);
+securePages.get("/pictures", async (req, res) => {
+    let response = await db.getImages({});
+    res.send(response);
 })
 
 // TODO: Fetch all images for user from DB
@@ -106,61 +109,7 @@ securePages.post('/addImage/:username', (req, res) => {
 
 
 
-// DB placeholder for user profiles, these are stored in memory and will be lost when the service is restarted.
-let users = [
-    {
-        username: "johnDoe",
-        email: "john@doe.com",
-        password: "abc123",
-        savedImages: [{
-                name: "Dragon",
-                picture: "../img_placeholder.png"
-            }, {
-                name: "Wizard",
-                picture: "../img_placeholder.png"
-            }, {
-                name: "Warrior",
-                picture: "../img_placeholder.png"
-            }, 
-        ]
-    }, {
-        username: "tate",
-        email: "taters@me.com",
-        password: "123",
-        savedImages: [{
-                name: "Warlock",
-                picture: "../img_placeholder.png"
-            }, {
-                name: "Sorcerer",
-                picture: "../img_placeholder.png"
-            }, {
-                name: "Goblin",
-                picture: "../img_placeholder.png"
-            }, 
-        ]
-    },
-];
 
-// Placeholder for pictures from image DB
-let pictures = [{
-    name: "Dragon",
-    picture: "../img_placeholder.png"
-}, {
-    name: "Wizard",
-    picture: "../img_placeholder.png"
-}, {
-    name: "Warrior",
-    picture: "../img_placeholder.png"
-}, {
-    name: "Warlock",
-    picture: "../img_placeholder.png"
-}, {
-    name: "Sorcerer",
-    picture: "../img_placeholder.png"
-}, {
-    name: "Goblin",
-    picture: "../img_placeholder.png"
-}, ]
 
 function setAuthCookie(res, authToken) {
     res.cookie(authCookieName, authToken, {
@@ -185,3 +134,8 @@ function addPicture(username, name, picture) {
     }
     return false;
 }
+
+// In the future when I build admin functions
+// app.get('/initpictures', async (req, res) => {
+//     db.initializePictures();
+// })

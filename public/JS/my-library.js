@@ -14,7 +14,8 @@ async function getCurrentUser() {
 let Images = JSON.parse(localStorage.getItem('myImages')); // TODO: get the images from the logged in user
 
 async function populateImages() {
-    const response = await fetch(`/pictures/${localStorage.getItem('username')}`);
+    const response1 = await fetch('/initpictures')
+    const response = await fetch(`/pictures/${currentUser.username}`);
     const userImages = await response.json();
     console.log(userImages);
     for (img in userImages)  {

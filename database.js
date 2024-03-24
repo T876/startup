@@ -24,6 +24,8 @@ async function createUser(user) {
     return true;
 }
 
+
+
 // Returns a JSON object with one property - IsAuthenticated: boolean
 async function authenticateUser(username, password) {
     let user = await getUserByUsername(username);
@@ -53,12 +55,37 @@ async function getUserByAuthToken(token) {
 
 // Image Functions
 async function getImages() {
-
+    console.log(await images.find().toArray());
+    return await images.find().toArray();
 }
 
 async function addUserImage() {
 
 }
+
+
+// Admin functions for the future
+// async function initializePictures() {
+//     await images.insertMany([{
+//         name: "Dragon",
+//         picture: "../img_placeholder.png"
+//     }, {
+//         name: "Wizard",
+//         picture: "../img_placeholder.png"
+//     }, {
+//         name: "Warrior",
+//         picture: "../img_placeholder.png"
+//     }, {
+//         name: "Warlock",
+//         picture: "../img_placeholder.png"
+//     }, {
+//         name: "Sorcerer",
+//         picture: "../img_placeholder.png"
+//     }, {
+//         name: "Goblin",
+//         picture: "../img_placeholder.png"
+//     }])
+// }
 
 
 module.exports = {
@@ -69,4 +96,6 @@ module.exports = {
     getUserByAuthToken,
     getImages,
     addUserImage,
+    getImages,
+    // initializePictures,
 };
