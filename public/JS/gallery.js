@@ -118,8 +118,10 @@ function randomLikes() {
 
 async function onInit() {
     await getCurrentUser()
+    document.getElementById('username-display').innerText = currentUser.username;
     initPictures()
     randomLikes()
+    
 }
 
 onInit();

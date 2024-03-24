@@ -44,8 +44,8 @@ async function populateImages() {
 
 async function onInit() {
     await getCurrentUser();
+    document.getElementById('username-display').innerText = currentUser.username;
     populateImages();
-    console.log(currentUser);
 }
 
 onInit();
