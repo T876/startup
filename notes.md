@@ -130,3 +130,52 @@
  - Path - /first/second
  - Params - ?a=foo;b=bar
  - Anchor - #3
+
+# Security
+ * OWASP 10
+  * Broken Access control
+   - Least privelege access violation - Don't store user info in memory client-side
+   - URL bypass control 
+   - Resource path allows access
+  * Cryptographic Failures
+   - Transmitting data as clear text
+   - Not encrypting at rest or transit
+   - Weak cryptography (SHA 1, MD5)
+   - Misused cryptography (no salt, wrong params)
+  * Injection
+   - User supplied data is not sanitized - They submit executable code 
+   - User data is executed as code
+  * Insecure Design
+   - Not aware of best practices
+   - Unlimited trial accounts
+   - Customer data not segmented - Aggregate data outside of the production environment
+   - Single layer defense
+  * Security Misconfiguration
+   - Development info exposed
+   - Using default config
+   - Unnecessary features - No dead code/packages
+   - System not hardened - Minimalist
+  * Vulnerable components
+   - Unnecessary/unused packages imported
+   - Untrusted/verified source
+   - Out of date software
+   - Not tracking vulnerability bulletins
+   - Package versions not locked
+  * ID and Auth Failures
+   - Credential stuffing (compromised list)
+   - Brute force (guess password)
+   - permitting weak passwords
+   - Weak cred. recovery
+   - Credentials in URL - Do
+   - Not expiring auth tokens - Do
+  * Software Integrity Failures
+   - Unverified CDN
+   - Unverified packages
+   - Unverified updates
+   - Insecure CD/CI platforms
+  * Logging Failure
+   - Not logging critical requests
+   - Not monitoring system performance
+   - Logs not audited, automatic or manual
+   - Logs not stored centrally
+   
