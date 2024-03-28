@@ -1,4 +1,5 @@
 let currentUser = {}
+let socket = {};
 async function getCurrentUser() {
     let response = await fetch('/secure/currentUser')
     if (!response.ok){
@@ -7,7 +8,6 @@ async function getCurrentUser() {
     }
     currentUser = await response.json()
 }
-const socket = new WebSocket('ws://localhost:9000');
 
 socket.onmessage = (event) => {
   console.log('received: ', event.data);
@@ -78,7 +78,6 @@ async function initPictures() {
 function likePicture(picture) {
     // Send the like over the websocket
     var pictureName = picture.parentElement.parentElement.querySelector('div').querySelector('.name').innerText;
-    console.log(pictureName);
     socket.send(pictureName);
 
     // Disable the button
@@ -90,6 +89,20 @@ function likePicture(picture) {
         picture.classList.add("liked");
     }
 } 
+
+
+
+function initializeWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    console.log(protocol);
+    console.log(window.location.host)
+    socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    console.log(protocol);
+
+    socket.onmessage = async (event) => {
+        console.log('received: ', event.data);
+    }
+}
 
 async function addPicture(picture) {
     console.log(picture.parentElement.parentElement);
@@ -120,7 +133,8 @@ async function addPicture(picture) {
 async function onInit() {
     await getCurrentUser()
     document.getElementById('username-display').innerText = currentUser.username;
-    initPictures()
+    initPictures();
+    initializeWebSocket();
     
 }
 

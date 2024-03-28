@@ -1,9 +1,8 @@
 // Third Party Modules
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const bcrypt = require('bcrypt');
 const db  = require('./database.js');
-const { WebSocketServer } = require( 'ws' )
+const { webSocketInit } = require('./websocket.js');
 
 const authCookieName = 'authCookie';
 const app = express();
@@ -12,8 +11,6 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
-
-app.listen(4000);
 
 // Authentication endpoints - Login and account creation
 app.get('/login/:username/:password', async (req, res) => {
@@ -114,21 +111,11 @@ securePages.post('/addImage/:username', (req, res) => {
 });
 
 // Websocket
+const httpService = app.listen('4000', () => {
+    console.log('Listening on port 4000')
+});
 
-const wss = new WebSocketServer({port: 9000});
-
-wss.on('connection', (ws) => {
-    ws.on('message', (data) => {
-        const msg = String.fromCharCode(...data);
-        console.log("received: %s", msg)
-
-        ws.send(`I heard you say: ${msg}`)
-        
-       
-    });
-    ws.send('Connection Active')
-})
-
+webSocketInit(httpService);
 
 
 
