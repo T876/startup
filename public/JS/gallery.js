@@ -7,6 +7,12 @@ async function getCurrentUser() {
     }
     currentUser = await response.json()
 }
+const socket = new WebSocket('ws://localhost:9000');
+
+socket.onmessage = (event) => {
+  console.log('received: ', event.data);
+};
+
 
 async function initPictures() {
     const response = await fetch('/secure/pictures');
@@ -103,24 +109,12 @@ async function addPicture(picture) {
 }
 
 // Simulate websocket data as other users like pictures
-function randomLikes() {
-    let likes = document.querySelectorAll('.likes');
-    let randRange = (min, max) => {return Math.floor(Math.random() * (max - min) + min)}
-    if(likes[0]) {
-        setInterval(() => {
-            let randIndex = randRange(0, likes.length);
-            let newLikesNum = parseInt(likes[randIndex].innerText.match(/\d+/));
-            newLikesNum++;
-            likes[randIndex].innerText = newLikesNum + " Likes";
-          }, 3000);
-    }
-}
+
 
 async function onInit() {
     await getCurrentUser()
     document.getElementById('username-display').innerText = currentUser.username;
     initPictures()
-    randomLikes()
     
 }
 

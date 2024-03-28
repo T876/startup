@@ -3,7 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const db  = require('./database.js');
-const { UUID } = require('mongodb');
+const { WebSocketServer } = require( 'ws' )
 
 const authCookieName = 'authCookie';
 const app = express();
@@ -113,6 +113,21 @@ securePages.post('/addImage/:username', (req, res) => {
     };
 });
 
+// Websocket
+
+const wss = new WebSocketServer({port: 9000});
+
+wss.on('connection', (ws) => {
+    ws.on('message', (data) => {
+        const msg = String.fromCharCode(...data);
+        console.log("received: %s", msg)
+
+        ws.send(`I heard you say: ${msg}`)
+        
+       
+    });
+    ws.send('Connection Active')
+})
 
 
 

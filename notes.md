@@ -176,6 +176,8 @@
   * Logging Failure
    - Not logging critical requests
    - Not monitoring system performance
-   - Logs not audited, automatic or manual
+   - Logs not audited, automatic   manual
    - Logs not stored centrally
-   
+
+# Security Practice
+ - Juice shop - Gamified way to hack websites
