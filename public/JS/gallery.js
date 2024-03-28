@@ -76,6 +76,12 @@ async function initPictures() {
 }
 
 function likePicture(picture) {
+    // Send the like over the websocket
+    var pictureName = picture.parentElement.parentElement.querySelector('div').querySelector('.name').innerText;
+    console.log(pictureName);
+    socket.send(pictureName);
+
+    // Disable the button
     var pictureClassList = picture.classList;
     if (!pictureClassList[3]) {
         picture.innerText = (parseInt(picture.innerText.match(/\d+/)) + 1) + " Likes" ;
