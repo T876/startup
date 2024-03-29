@@ -83,5 +83,9 @@ My application structure has been built using HTML
 - **Stores and retrieves credentials in MongoDB** - see `index.js` lines 36-55, `database.js`lines 13-25
 - **Restricts application functionality based upon authentication** see `index.js` lines 58-74
 
-## Main Type Definitions - 
- - 
+## Websocket Deliverable
+- **Feature Overview** - I used a websocket connection to manage the 'likes' feature. You can check it out in the `gallery.html` page.
+- **Backend Listens for WebSocket connection** - see `index.js` lines 113-118 - listening for the websocket here, `websocket.js` lines 8-15 - handling the upgrade here.
+- **Frontend makes WebSocket Connection** - See `initializeWebsocket()` on lines 76-91 of `gallery.js`. I use the 'socket' global object (initialized on line 3) to access the connection.
+- **Data sent over WebSocket Connection** - on line 122 of `gallery.js`, data is sent to the server, and on lines 36-38 of `websocket.js` data is sent back to the client to update the likes. That data is handled on the client side by the function `applyLikes()` found on lines 133-148 of `gallery.js`
+- **WebSocket data displayed in the application interface** - this is also done in the `applyLikes()` function, specifically on lines 136-148. This data is displayed as the number of likes for each picture.

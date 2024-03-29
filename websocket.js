@@ -4,6 +4,7 @@ const uuid = require('uuid');
 let pictures = {}
 
 function webSocketInit(httpServer) {
+    // Start the connection
     const wss = new WebSocketServer({ noServer: true })
 
     httpServer.on('upgrade', (req, socket, head) => {

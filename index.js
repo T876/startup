@@ -118,7 +118,7 @@ const httpService = app.listen('4000', () => {
 webSocketInit(httpService);
 
 
-
+// Helper Functions
 function setAuthCookie(res, authToken) {
     res.cookie(authCookieName, authToken, {
       secure: true,

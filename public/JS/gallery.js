@@ -132,14 +132,14 @@ function likePicture(picture) {
 
 function applyLikes (likes) {
     let likeNums = document.querySelectorAll('.likes');
-    console.log(likeNums);
+    // console.log(likeNums);
     for (let index in likeNums) {
         let picture = likeNums[index];
         let picElement = picture.parentElement;
         if (picElement) {
             let picName = picElement.parentElement.querySelector('div').querySelector('.name').innerText;
             for (i in likes) {
-                console.log(i);
+                // console.log(i);
                 if (i === picName) {
                     picture.innerText = likes[i] + " Likes";
                 }
