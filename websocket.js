@@ -13,7 +13,7 @@ function webSocketInit(httpServer) {
         });
     });
 
-    let connections = []
+    let connections = [];
 
     wss.on('connection', (ws) => {
         const connection = { id: uuid.v4(), alive: true, ws: ws  };
@@ -35,9 +35,16 @@ function webSocketInit(httpServer) {
             connections.forEach((c) => {
                 c.ws.send(JSON.stringify(pictures));
             })
-
-            // ws.send(JSON.stringify(pictures))
         });
+
+        ws.on('close', () => {
+            connections.findIndex((obj, idx) => {
+                if (obj.id === connection.id) {
+                    connections.splice(idx, 1);
+                    return true;
+                }
+            })
+        })
 
         ws.send(JSON.stringify(pictures));
     });
