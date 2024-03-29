@@ -75,18 +75,18 @@ async function initPictures() {
 
 function initializeWebSocket() {
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    console.log(protocol);
-    console.log(window.location.host)
+    // console.log(protocol);
+    // console.log(window.location.host)
     socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
-    console.log(protocol);
+    // console.log(protocol);
 
     socket.onmessage = async (event) => {
         let regexJsonDetector = /\{.*\}/;
-        console.log(event.data.match(regexJsonDetector))
+        // console.log(event.data.match(regexJsonDetector))
         if (event.data.match(regexJsonDetector)) {
             applyLikes(JSON.parse(event.data));
         }
-        console.log('received: ', event.data);
+        // console.log('received: ', event.data);
     }
 }
 
@@ -94,7 +94,7 @@ function initializeWebSocket() {
 // User Interaction Functions
 
 async function addPicture(picture) {
-    console.log(picture.parentElement.parentElement);
+    // console.log(picture.parentElement.parentElement);
     let pictureUrl = picture.parentElement.parentElement.querySelector('img').src;
     let pictureName = picture.parentElement.parentElement.querySelector('.name').innerText;
     let requestBody = {
