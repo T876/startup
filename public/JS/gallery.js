@@ -75,20 +75,7 @@ async function initPictures() {
     
 }
 
-function likePicture(picture) {
-    // Send the like over the websocket
-    var pictureName = picture.parentElement.parentElement.querySelector('div').querySelector('.name').innerText;
-    socket.send(pictureName);
 
-    // Disable the button
-    var pictureClassList = picture.classList;
-    if (!pictureClassList[3]) {
-        picture.innerText = (parseInt(picture.innerText.match(/\d+/)) + 1) + " Likes" ;
-        picture.classList.remove("btn-primary");
-        picture.classList.add("btn-disabled");
-        picture.classList.add("liked");
-    }
-} 
 
 
 
@@ -104,6 +91,7 @@ function initializeWebSocket() {
     }
 }
 
+// 
 async function addPicture(picture) {
     console.log(picture.parentElement.parentElement);
     let pictureUrl = picture.parentElement.parentElement.querySelector('img').src;
@@ -126,6 +114,21 @@ async function addPicture(picture) {
     picture.classList.add("liked");
     location.reload();
 }
+
+function likePicture(picture) {
+    // Send the like over the websocket
+    var pictureName = picture.parentElement.parentElement.querySelector('div').querySelector('.name').innerText;
+    socket.send(pictureName);
+
+    // Disable the button
+    var pictureClassList = picture.classList;
+    if (!pictureClassList[3]) {
+        picture.innerText = (parseInt(picture.innerText.match(/\d+/)) + 1) + " Likes" ;
+        picture.classList.remove("btn-primary");
+        picture.classList.add("btn-disabled");
+        picture.classList.add("liked");
+    }
+} 
 
 // Simulate websocket data as other users like pictures
 

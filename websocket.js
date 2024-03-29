@@ -1,13 +1,15 @@
 const { WebSocketServer } = require( 'ws' )
 const uuid = require('uuid');
 
+let pictures = {}
+
 function webSocketInit(httpServer) {
     const wss = new WebSocketServer({ noServer: true })
 
     httpServer.on('upgrade', (req, socket, head) => {
         wss.handleUpgrade(req, socket, head, function done(ws){
-            ws.emit('connection', ws, req);
-            console.log('WS iniitiated')
+            wss.emit('connection', ws, req);
+            console.log('WS initiated')
         });
     });
 
@@ -20,9 +22,17 @@ function webSocketInit(httpServer) {
 
         ws.on('message', function like(data) {
             const msg = String.fromCharCode(...data);
-            console.log("received: %s", msg)
+            
+            // Save the like
+            if (!pictures[msg]) {
+                pictures[msg] = 1;
+            } else {
+                pictures[msg]++;
+            };
 
-            ws.send(`I heard you say: ${msg}`)
+            console.log(pictures)
+
+            ws.send(JSON.stringify(pictures))
         });
 
         ws.send('Connection Active');
