@@ -32,10 +32,14 @@ function webSocketInit(httpServer) {
 
             console.log(pictures)
 
-            ws.send(JSON.stringify(pictures))
+            connections.forEach((c) => {
+                c.ws.send(JSON.stringify(pictures));
+            })
+
+            // ws.send(JSON.stringify(pictures))
         });
 
-        ws.send('Connection Active');
+        ws.send(JSON.stringify(pictures));
     });
 }
 

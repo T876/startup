@@ -1,5 +1,8 @@
+// Define global variables
 let currentUser = {}
 let socket = {};
+
+// Initialization functions
 async function getCurrentUser() {
     let response = await fetch('/secure/currentUser')
     if (!response.ok){
@@ -8,11 +11,6 @@ async function getCurrentUser() {
     }
     currentUser = await response.json()
 }
-
-socket.onmessage = (event) => {
-  console.log('received: ', event.data);
-};
-
 
 async function initPictures() {
     const response = await fetch('/secure/pictures');
@@ -58,7 +56,7 @@ async function initPictures() {
         let likeButton = document.createElement('button');
         likeButton.onclick = function() {likePicture(this)};
         likeButton.classList = "btn btn-primary likes";
-        likeButton.innerText = "36 Likes";
+        likeButton.innerText = "0 Likes";
         let addPictureButton = document.createElement('button')
         addPictureButton.onclick = function() {addPicture(this)};
         addPictureButton.classList = "btn btn-secondary";
@@ -75,10 +73,6 @@ async function initPictures() {
     
 }
 
-
-
-
-
 function initializeWebSocket() {
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     console.log(protocol);
@@ -87,11 +81,18 @@ function initializeWebSocket() {
     console.log(protocol);
 
     socket.onmessage = async (event) => {
+        let regexJsonDetector = /\{.*\}/;
+        console.log(event.data.match(regexJsonDetector))
+        if (event.data.match(regexJsonDetector)) {
+            applyLikes(JSON.parse(event.data));
+        }
         console.log('received: ', event.data);
     }
 }
 
-// 
+
+// User Interaction Functions
+
 async function addPicture(picture) {
     console.log(picture.parentElement.parentElement);
     let pictureUrl = picture.parentElement.parentElement.querySelector('img').src;
@@ -123,12 +124,30 @@ function likePicture(picture) {
     // Disable the button
     var pictureClassList = picture.classList;
     if (!pictureClassList[3]) {
-        picture.innerText = (parseInt(picture.innerText.match(/\d+/)) + 1) + " Likes" ;
         picture.classList.remove("btn-primary");
         picture.classList.add("btn-disabled");
         picture.classList.add("liked");
     }
-} 
+}
+
+function applyLikes (likes) {
+    let likeNums = document.querySelectorAll('.likes');
+    console.log(likeNums);
+    for (let index in likeNums) {
+        let picture = likeNums[index];
+        let picElement = picture.parentElement;
+        if (picElement) {
+            let picName = picElement.parentElement.querySelector('div').querySelector('.name').innerText;
+            for (i in likes) {
+                console.log(i);
+                if (i === picName) {
+                    picture.innerText = likes[i] + " Likes";
+                }
+            }
+        }
+    }
+
+}
 
 // Simulate websocket data as other users like pictures
 
@@ -136,7 +155,7 @@ function likePicture(picture) {
 async function onInit() {
     await getCurrentUser()
     document.getElementById('username-display').innerText = currentUser.username;
-    initPictures();
+    await initPictures();
     initializeWebSocket();
     
 }
