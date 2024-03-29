@@ -34,7 +34,7 @@ function webSocketInit(httpServer) {
 
             connections.forEach((c) => {
                 c.ws.send(JSON.stringify(pictures));
-            })
+            });
         });
 
         ws.on('close', () => {
@@ -43,8 +43,8 @@ function webSocketInit(httpServer) {
                     connections.splice(idx, 1);
                     return true;
                 }
-            })
-        })
+            });
+        });
 
         ws.send(JSON.stringify(pictures));
     });
