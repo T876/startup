@@ -181,3 +181,17 @@
 
 # Security Practice
  - Juice shop - Gamified way to hack websites
+
+# React
+ - JSX - Javascript + html - Render react components in your html pages, couples JS and HTML
+ - Use Babel in codepen to compile JS
+ - Nested components determine what is rendered
+ - Reuse components
+ - Look at object destructuring
+ - Always capitalize component names
+
+# Reactivity 
+ * `React.useEffect()` - Pass function to execute every time the component is rendered - return value is what happens on destroy. Pass an empty array in as the second parameter if you only want the effect to happen on the first time. Put things in the array if you want to conditionally trigger this code
+   - Only in function components
+   - Only at top function scope
+   - No loops or conditionals
