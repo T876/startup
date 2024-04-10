@@ -19,7 +19,7 @@ export default function App() {
                             <a class="nav-link active" aria-current="page" href="#">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./HTML/create-account.html">Create Account</a>
+                            <a class="nav-link" href="#">Create Account</a>
                         </li>
                         </ul>
                     </div>
