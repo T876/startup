@@ -1,70 +1,16 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>MyRpgVisual - Login</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link href="./CSS/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <!-- <header>
-            <h3>MyRpgVisual</h3>
-            <nav>
-                <menu>
-                    <li><a href="index.html">home</a></li>
-                    <li><a href="html/gallery.html">gallery</a></li>
-                    <li><a href="html/my-library.html">my libarry</a></li>
-                </menu>
-            </nav>
-        </header> -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">MyRPGVisual</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./HTML/create-account.html">Create Account</a>
-                    </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <main>
-            <h1>Welcome to MyRPGVisual!</h1>
-            <h5>Sign In:</h5>
-            <div id="create-account-form">
-                <div class="mb-3">
-                  <label for="signinUsername" class="form-label">Username</label>
-                  <input required type="email" class="form-control" id="signinUsername" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                  <label for="signinPassword" class="form-label">Password</label>
-                  <input required type="password" class="form-control" id="signinPassword">
-                </div>
-                <button onclick="authenticateUser()" class="btn btn-primary centered" id="login-button">Submit</button>
-                <a href="./HTML/create-account.html">
-                    <button type="button" class="btn btn-secondary">Create Account</button>
-                </a>
-                <div id="authError">
-                </div>
-            </div>
-            
-        </main>
-        <footer class="fixed-bottom">
-            <p class="author">Author: Nathanael T. Cotton</p>
-            <a href="https://github.com/T876/startup">
-                <button class="btn btn-primary">Github</button>
-            </a>
-        </footer>
-        <script defer type="text/javascript" src="./JS/validation-service.js"></script>
-        <script defer type="text/javascript" src="./JS/login-page.js"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
+    <title>MyRPGVisual</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.jsx"></script>
+  </body>
 </html>
