@@ -195,3 +195,26 @@
    - Only in function components
    - Only at top function scope
    - No loops or conditionals
+
+# UX
+ - Simple
+ - Tell a story
+ - Consistent with what people think
+   - You can change - but be better and don't just do a lot of weird things.
+   - Use a framework
+ - Navigation - tell a user the story they are expecting - sitemap is a cool tool for this
+   - Display location
+   - Browser controls
+   - Breadcrumbs
+   - Common path
+   - Bottom line: Don't make it so complicated that they can't make it out
+ - Color - Don't make their eyes hurt and be aware of colorblindness
+ - Fonts - Keep it simple
+ - Standard text size for different elements
+ - Whitespace - use it
+ - Interaction - Easily able to engage
+ - Image must add value
+ - Keep decision time low, kep amount of decisions low or decompose into simple components
+ - Accessibility - Build with diversity in mind, accessible to everyone
+ - Legal - Don't break intellectual property laws
+ - Walls - What is going to stop people from using your site? Make them as small as possible. What do you do if something fails
