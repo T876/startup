@@ -6,6 +6,7 @@ import { CreateAccount } from './create_account/create_account';
 import { MyLibrary } from './my_library/my_library';
 import { Gallery } from './gallery/gallery';
 import { Login } from './login/login'
+import { NotFound } from './not_found/not_found';
 
 export default function App() {
 
@@ -13,7 +14,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <div className='body'>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+                <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                     <div className="container-fluid">
                         <a className="navbar-brand" href="#">MyRPGVisual</a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +57,7 @@ export default function App() {
                     <Route path='/create_account' element={<CreateAccount />} />
                     <Route path='/library' element={<MyLibrary />} />
                     <Route path='/gallery' element={<Gallery />} />
-                    {/* <Route path='*' element={<NotFound />} /> */}
+                    <Route path='*' element={<NotFound />} />
                 </Routes>
                 </main>
                 <footer className="fixed-bottom">
