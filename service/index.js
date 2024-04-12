@@ -12,8 +12,15 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
 
+// Trust headers that are forwarded from the proxy (for debugging)
+app.set('trust proxy', true);
+
+// Global router for all requests
+const appRouter = express.Router();
+app.use('/app', appRouter)
+
 // Authentication endpoints - Login and account creation
-app.get('/login/:username/:password', async (req, res) => {
+appRouter.get('/login/:username/:password', async (req, res) => {
     const username = req.params.username
     const password =  req.params.password
     if (username && password) {
@@ -26,8 +33,7 @@ app.get('/login/:username/:password', async (req, res) => {
 });
 
 
-
-app.post('/create', async (req, res) => {
+appRouter.post('/create', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
@@ -49,8 +55,8 @@ app.post('/create', async (req, res) => {
 });
 
 // securePages verifies user is logged in before they hit any further endpoints
-let securePages = express.Router()
-app.use('/secure', securePages)
+const securePages = express.Router()
+appRouter.use('/secure', securePages)
 
 securePages.delete('/logout', async (_req, res)=> {
     res.clearCookie(authCookieName);
@@ -110,9 +116,11 @@ securePages.post('/addImage/:username', (req, res) => {
     };
 });
 
+
 // Websocket
-const httpService = app.listen('4000', () => {
-    console.log('Listening on port 4000')
+const websocketPort = '4000'
+const httpService = app.listen(websocketPort, () => {
+    console.log(`Websocket on port ${websocketPort}`)
 });
 
 webSocketInit(httpService);
