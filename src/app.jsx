@@ -9,7 +9,9 @@ import { Login } from './login/login'
 import { NotFound } from './not_found/not_found';
 
 export default function App() {
-
+    const [username, setUserName] = React.useState(undefined);
+    const currentAuthState = username ? true : false;
+    const[authState, setAuthState] = React.useState(currentAuthState);
 
     return (
         <BrowserRouter>
@@ -32,28 +34,38 @@ export default function App() {
                                         Create Account
                                     </NavLink>
                                 </li>
-                                <li className='nav-item'>
-                                    <NavLink className='nav-link' to='library'>
-                                        My Library
-                                    </NavLink>
-                                </li>
-                                <li className='nav-item'>
-                                    <NavLink className='nav-link' to='gallery'>
-                                        Gallery
-                                    </NavLink>
-                                </li>
-                                <li className='nav-item'>
-                                    <NavLink className='nav-link' to=''>
-                                        Logout
-                                    </NavLink>
-                                </li>
+                                { authState &&
+                                    <li className='nav-item'>
+                                        <NavLink className='nav-link' to='library'>
+                                            My Library
+                                        </NavLink>
+                                    </li>
+                                }
+                                { authState &&
+                                    <li className='nav-item'>
+                                        <NavLink className='nav-link' to='gallery'>
+                                            Gallery
+                                        </NavLink>
+                                    </li>
+                                }
+                                { authState &&
+                                    <li className='nav-item'>
+                                        <NavLink className='nav-link' to=''>
+                                            Logout
+                                        </NavLink>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>
                 </nav>
                 <main>
                 <Routes>
-                    <Route path='/' element={<Login />} exact />
+                    <Route path='/' element={<Login
+                        authState={authState}
+                        setAuthState={setAuthState}
+                        setUsername={setUserName}
+                    />} exact />
                     <Route path='/create_account' element={<CreateAccount />} />
                     <Route path='/library' element={<MyLibrary />} />
                     <Route path='/gallery' element={<Gallery />} />
