@@ -10,7 +10,7 @@ async function authenticateUser() {
     let username = document.getElementById('signinUsername').value
     let password = document.getElementById('signinPassword').value
     const response = await fetch(`/login/${username}/${password}`);
-    user = await response.json();
+    let user = await response.json();
     if (user.isAuthenticated) {
         // TODO: Replace this with a auth cookie, authenticate using the cookie on all pages that the user shouldn't access w/o logging in
         localStorage.setItem('username', user.username);

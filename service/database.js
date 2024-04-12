@@ -29,12 +29,15 @@ async function createUser(user) {
 // Returns a JSON object with one property - IsAuthenticated: boolean
 async function authenticateUser(username, password) {
     let user = await getUserByUsername(username);
-    if (await bcrypt.compare(password, user.password)) {
-        return { 
-            isAuthenticated: true,
-            token: user.token
-        };
-    } else {
+    if (user) {
+        if (await bcrypt.compare(password, user.password)) {
+            return { 
+                isAuthenticated: true,
+                token: user.token
+            };
+        }
+    }
+    else {
         return { 
             isAuthenticated: false,
         };

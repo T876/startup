@@ -1,13 +1,23 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function Login({ authState, setAuthState, setUsername}) {
   const [username, setUsernameLocal] = React.useState(undefined);
   const [password, setPassword] = React.useState(undefined);
   const [authError, setAuthError] = React.useState(undefined);
+  const navigate = useNavigate();
 
-  function authenticateUser() {
-    console.log(username)
-    console.log(password)
+  async function authenticateUser() {
+    const response = await fetch(`/app/login/${username}/${password}`);
+    let user = await response.json();
+    if (user.isAuthenticated) {
+        // TODO: Replace this with a auth cookie, authenticate using the cookie on all pages that the user shouldn't access w/o logging in
+        setUsername(user.username);
+        setAuthState(true);
+        navigate('/library');
+    } else {
+        setAuthError("Incorrect username and password");
+    }   
   }
 
   return (
