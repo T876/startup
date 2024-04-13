@@ -21,7 +21,7 @@ async function createUser(user) {
         savedImages: [],
     })
 
-    return true;
+    return token;
 }
 
 

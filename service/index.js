@@ -57,11 +57,13 @@ appRouter.post('/create', async (req, res) => {
         res.status(409).send({error: "Existing user. Please use another username."})
     } else {
         if (username && password && email) {
-            res.send(await db.createUser({
+            setAuthCookie(res, db.createUser({
                 username: username,
                 email: email,
                 password: password
             }));
+            res.send(true);
+            
         } else {
             res.status(409).send({error: "Please send a username, password, and email"})
         };

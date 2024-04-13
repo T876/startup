@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export function Login({ authState, setAuthState, setUsername}) {
+export function Login({setAuthState, setUsername}) {
   const [username, setUsernameLocal] = React.useState(undefined);
   const [password, setPassword] = React.useState(undefined);
   const [authError, setAuthError] = React.useState(undefined);

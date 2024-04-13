@@ -88,7 +88,10 @@ export default function App() {
                         setAuthState={setAuthState}
                         setUsername={setUserName}
                     />} exact />
-                    <Route path='/create_account' element={<CreateAccount />} />
+                    <Route path='/create_account' element={<CreateAccount
+                        setAuthState={setAuthState}
+                        setUsername={setUserName}
+                    />} exact/>
                     <Route path='/library' element={<MyLibrary />} />
                     <Route path='/gallery' element={<Gallery />} />
                     <Route path='*' element={<NotFound />} />
