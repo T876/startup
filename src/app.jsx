@@ -1,7 +1,8 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
-import { BrowserRouter, NavLink, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes, json} from 'react-router-dom';
 import { CreateAccount } from './create_account/create_account';
 import { MyLibrary } from './my_library/my_library';
 import { Gallery } from './gallery/gallery';
@@ -14,10 +15,15 @@ export default function App() {
     const currentAuthState = username ? true : false;
     const [authState, setAuthState] = React.useState(currentAuthState);
     
+    // Site-wide effects
+    
     
     function logout() {
         setUserName(undefined);
         setAuthState(false);
+        fetch('/app/secure/logout', {
+            method: 'DELETE'
+        })
     }
 
     return (
@@ -60,7 +66,12 @@ export default function App() {
                                     </li>
                                 }
                                 { authState &&
-                                    <li onClick={() => logout()} className='nav-item'>
+                                    <li onClick={() => {async function logoutUser() {
+                                            await logout()
+                                        }
+                                        logoutUser()
+                                        }} 
+                                        className='nav-item'>
                                         <NavLink className='nav-link' to=''>
                                             Logout
                                         </NavLink>

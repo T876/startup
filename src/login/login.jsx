@@ -7,6 +7,24 @@ export function Login({ authState, setAuthState, setUsername}) {
   const [authError, setAuthError] = React.useState(undefined);
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    const delayedEffect = () => {
+      // Your effect code goes here
+      async function tryAuthenticateByToken() {
+        let loginInfo = await fetch('/app/bycookie');
+        let authUser = await loginInfo.json();
+        if (authUser['username']) {
+            setUsername(authUser['username']);
+            setAuthState(true)
+            navigate('/library');
+        }
+      };
+      tryAuthenticateByToken();
+    };
+    const timeoutId = setTimeout(delayedEffect, 2000);
+    return() => clearTimeout(timeoutId);
+  }, [])
+
   async function authenticateUser() {
     const response = await fetch(`/app/login/${username}/${password}`);
     let user = await response.json();

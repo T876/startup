@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const db  = require('./database.js');
 const { webSocketInit } = require('./websocket.js');
 
-const authCookieName = 'authCookie';
+const authCookieName = 'auth';
 const app = express();
 
 // Using the following middleware:
@@ -29,6 +29,20 @@ appRouter.get('/login/:username/:password', async (req, res) => {
         res.send(response);
     } else {
         res.status(500).send({error: "Please submit a username and password"});
+    }
+});
+
+appRouter.get('/bycookie', async (req, res) => {
+    const cookies = req.cookies
+    console.log(cookies)
+    if (cookies['auth']) {
+        let response = await db.getUserByAuthToken(cookies['auth'])
+        if (response.username){
+            res.send({username: response.username});
+        }
+    }
+    else {
+        res.status(500).send({error: "Invalid auth token"});
     }
 });
 
