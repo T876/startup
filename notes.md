@@ -215,6 +215,20 @@
  - Interaction - Easily able to engage
  - Image must add value
  - Keep decision time low, kep amount of decisions low or decompose into simple components
- - Accessibility - Build with diversity in mind, accessible to everyone
+ - Accessibility - Build with diversity in mind, accessible to everyones
  - Legal - Don't break intellectual property laws
  - Walls - What is going to stop people from using your site? Make them as small as possible. What do you do if something fails
+
+# PWA
+ - Behaves like a native app
+ - One codebase
+ - Works offline
+ * Getting started
+   * Manifest
+     - Json file that helps PWA know what to do
+   * Service Worker
+     - 1 line in index to register service worker
+   * Icons
+     - Part of manifest.json
+   * Offline fallbacks
+     - Caching rules in service-worker
