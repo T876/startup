@@ -89,3 +89,9 @@ My application structure has been built using HTML
 - **Frontend makes WebSocket Connection** - See `initializeWebsocket()` on lines 76-91 of `gallery.js`. I use the 'socket' global object (initialized on line 3) to access the connection.
 - **Data sent over WebSocket Connection** - on line 122 of `gallery.js`, data is sent to the server, and on lines 36-38 of `websocket.js` data is sent back to the client to update the likes. That data is handled on the client side by the function `applyLikes()` found on lines 133-148 of `gallery.js`
 - **WebSocket data displayed in the application interface** - this is also done in the `applyLikes()` function, specifically on lines 136-148. This data is displayed as the number of likes for each picture.
+
+## React Deliverable
+- **Bundled using Vite** - see `vite.config.js`
+- **Multiple functional react components** - See `app.jsx`, `login.jsx`, and `create_account.jsx` NOTE: The Gallery and Login components are not functional at the time that I turned this in. Hoping to finish them tomorrow.
+- **React router** - see `app.jsx`, specifically the `return` statement
+- **React hooks** - Both state and effect hooks are used in `login.jsx`. See lines 5-26. State hooks are also used in `app.jsx` and `login.jsx`, in the opening lines of the component functions.
