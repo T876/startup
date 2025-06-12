@@ -7,7 +7,6 @@ A fantasy-themed image gallery application that allows users to browse, like, an
 - Secure HTTPS authentication
 - Real-time image likes using WebSocket
 - Personal image library management
-- AWS S3 integration for image storage
 - Responsive design for all devices
 - Image linking functionality
 
